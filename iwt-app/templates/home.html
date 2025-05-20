@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Home - IWT Tracker{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the IWT Tracker Application!</h1>
+    <p>This application helps you track your important work tasks.</p>
+    {% if not current_user.is_authenticated %}
+        <p>Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a> to get started.</p>
+    {% endif %}
+{% endblock %}

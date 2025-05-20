@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - IWT Tracker{% endblock %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    {% if current_user.is_authenticated %}
+        <p>Welcome, {{ current_user.username }}!</p>
+        <p>This is your dashboard. You can <a href="{{ url_for('add_session') }}">add a new walking session</a>.</p>
+    {% else %}
+        <p>Please <a href="{{ url_for('login') }}">log in</a> to see your dashboard.</p>
+        {# This part should ideally not be reached if @login_required is working #}
+    {% endif %}
+
+    <hr>
+    <h3>Your Walking Sessions</h3>
+    {% if sessions %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total Duration (min)</th>
+                    <th>Distance (km)</th>
+                    <th>Walk Type</th>
+                    <th>Fast Duration (min)</th>
+                    <th>Slow Duration (min)</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                    <tr>
+                        <td>{{ session.date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ session.duration_minutes }}</td>
+                        <td>{{ session.distance_km if session.distance_km is not none else 'N/A' }}</td>
+                        <td>{{ session.walk_type }}</td>
+                        {% if session.walk_type == 'IWT' %}
+                            <td>{{ session.fast_duration_minutes if session.fast_duration_minutes is not none else 'N/A' }}</td>
+                            <td>{{ session.slow_duration_minutes if session.slow_duration_minutes is not none else 'N/A' }}</td>
+                        {% else %}
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        {% endif %}
+                        <td>{{ session.notes if session.notes else 'N/A' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You haven't logged any walks yet. <a href="{{ url_for('add_session') }}">Add one now!</a></p>
+    {% endif %}
+{% endblock %}

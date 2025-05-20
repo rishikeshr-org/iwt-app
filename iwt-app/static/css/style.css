@@ -1,0 +1,260 @@
+/* Global Resets and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    background-color: #f8f9fa; /* Lighter gray for background */
+    color: #343a40; /* Darker gray for text for better contrast */
+    margin: 0;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #343a40; /* Darker nav background */
+    color: #fff;
+    padding: 1rem 0; /* Use rem for scalable spacing */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px; /* Adjusted margin */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 0.75rem; /* Add padding to links */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus { /* Added focus state for accessibility */
+    background-color: #495057; /* Slightly lighter on hover/focus */
+    text-decoration: none;
+}
+
+/* Main Content Area */
+main {
+    padding: 2rem; /* Generous padding */
+    max-width: 960px; /* Slightly wider max-width */
+    margin: 2rem auto; /* More margin */
+    background-color: #fff;
+    border-radius: 8px; /* Rounded corners for main content block */
+    box-shadow: 0 0 15px rgba(0,0,0,0.07); /* Softer shadow */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50; /* A deep blue for headings */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.5rem; }
+
+
+/* Horizontal Rule */
+hr {
+    border: 0;
+    height: 1px;
+    background: #e9ecef; /* Lighter hr */
+    margin: 2rem 0; /* More margin around hr */
+}
+
+/* Flashed Messages */
+.flashes {
+    list-style-type: none;
+    margin: 1rem 0; /* Adjusted margin */
+    padding: 0; /* Removed default padding that might be on ul */
+}
+.flashes li {
+    padding: 0.75rem 1.25rem; /* Standard bootstrap padding */
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem; /* Standard bootstrap border-radius */
+    font-size: 0.95em;
+}
+.flashes li.success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+.flashes li.danger { background-color: #f8d7da; color: #842029; border-color: #f5c2c7; }
+.flashes li.info { background-color: #cff4fc; color: #055160; border-color: #b6effb; }
+.flashes li.warning { background-color: #fff3cd; color: #664d03; border-color: #ffecb5; }
+
+/* Form Styling */
+form div {
+    margin-bottom: 1rem; /* Consistent margin */
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem; /* Standard spacing */
+    font-weight: bold;
+    color: #495057; /* Slightly lighter label color */
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="date"],
+form input[type="time"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%; /* Full width */
+    padding: 0.75rem; /* More padding */
+    border: 1px solid #ced4da; /* Standard border color */
+    border-radius: 0.25rem; /* Standard border-radius */
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="date"]:focus,
+form input[type="time"]:focus,
+form input[type="number"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #80bdff; /* Blue border on focus, common accessibility pattern */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Matching shadow */
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px; /* Minimum height for textareas */
+}
+
+form button[type="submit"],
+.button-link { /* Added a class for link-styled buttons */
+    display: inline-block;
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    padding: 0.75rem 1.5rem; /* More padding */
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none; /* For .button-link */
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover,
+.button-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* IWT specific fields container in form */
+#iwt_fields div {
+    background-color: #f8f9fa; /* Slightly different background for these fields */
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+#iwt_fields div label {
+    font-weight: normal; /* Less emphasis than main labels */
+    color: #555;
+}
+
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem; /* Consistent margin */
+    background-color: #fff; /* Ensure table background is white */
+}
+
+table th, table td {
+    border: 1px solid #dee2e6; /* Lighter border color */
+    padding: 0.75rem; /* More padding */
+    text-align: left;
+    vertical-align: top; /* Align content to top */
+}
+
+table th {
+    background-color: #e9ecef; /* Light gray for table headers */
+    font-weight: bold;
+    color: #495057;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f9fa; /* Slightly off-white for even rows */
+}
+
+table tr:hover {
+    background-color: #e9ecef; /* Highlight on hover */
+}
+
+/* Links styled as text but with interaction */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    font-size: 0.9em;
+    color: #6c757d; /* Muted color for footer */
+    border-top: 1px solid #e9ecef; /* Separator line for footer */
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+
+/* Basic Responsive Considerations */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block; /* Stack nav items on smaller screens */
+        margin: 10px 0;
+    }
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="date"],
+    form input[type="time"],
+    form input[type="number"],
+    form select,
+    form textarea {
+        font-size: 16px; /* Prevent iOS zoom on focus */
+    }
+}

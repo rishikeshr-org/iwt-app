@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Add Walking Session - IWT Tracker{% endblock %}
+
+{% block content %}
+    <h2>Add New Walking Session</h2>
+    <form method="POST" action="{{ url_for('add_session') }}">
+        <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="{{ request.form.date if request.form.date else '' }}" required>
+        </div>
+        <div>
+            <label for="start_time">Start Time (Optional):</label>
+            <input type="time" id="start_time" name="start_time" value="{{ request.form.start_time if request.form.start_time else '' }}">
+        </div>
+        <div>
+            <label for="end_time">End Time (Optional):</label>
+            <input type="time" id="end_time" name="end_time" value="{{ request.form.end_time if request.form.end_time else '' }}">
+        </div>
+        <div>
+            <label for="duration_minutes">Total Duration (minutes):</label>
+            <input type="number" id="duration_minutes" name="duration_minutes" value="{{ request.form.duration_minutes if request.form.duration_minutes else '' }}" required min="1">
+        </div>
+        <div>
+            <label for="distance_km">Distance (km, Optional):</label>
+            <input type="number" id="distance_km" name="distance_km" value="{{ request.form.distance_km if request.form.distance_km else '' }}" step="0.01" min="0">
+        </div>
+        <div>
+            <label for="walk_type">Walk Type:</label>
+            <select id="walk_type" name="walk_type">
+                <option value="Normal" {% if request.form.walk_type == 'Normal' or not request.form.walk_type %}selected{% endif %}>Normal Walk</option>
+                <option value="IWT" {% if request.form.walk_type == 'IWT' %}selected{% endif %}>Interval Walking Training (IWT)</option>
+            </select>
+        </div>
+        
+        <!-- IWT Specific Fields -->
+        <div id="iwt_fields" style="display: none;">
+            <div>
+                <label for="fast_duration_minutes">Total Fast Walking Minutes (Optional):</label>
+                <input type="number" id="fast_duration_minutes" name="fast_duration_minutes" value="{{ request.form.fast_duration_minutes if request.form.fast_duration_minutes else '' }}" min="0">
+            </div>
+            <div>
+                <label for="slow_duration_minutes">Total Slow Walking Minutes (Optional):</label>
+                <input type="number" id="slow_duration_minutes" name="slow_duration_minutes" value="{{ request.form.slow_duration_minutes if request.form.slow_duration_minutes else '' }}" min="0">
+            </div>
+        </div>
+
+        <div>
+            <label for="notes">Notes (Optional):</label>
+            <textarea id="notes" name="notes" rows="4" cols="50">{{ request.form.notes if request.form.notes else '' }}</textarea>
+        </div>
+        <div>
+            <button type="submit">Add Session</button>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var walkTypeSelect = document.getElementById('walk_type');
+            var iwtFieldsDiv = document.getElementById('iwt_fields');
+
+            function toggleIwtFields() {
+                if (walkTypeSelect.value === 'IWT') {
+                    iwtFieldsDiv.style.display = 'block';
+                } else {
+                    iwtFieldsDiv.style.display = 'none';
+                }
+            }
+
+            // Initial check on page load
+            toggleIwtFields();
+
+            // Add event listener for changes
+            walkTypeSelect.addEventListener('change', toggleIwtFields);
+        });
+    </script>
+{% endblock %}
